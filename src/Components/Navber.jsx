@@ -14,7 +14,7 @@ const navLinks = (
     </li>
     <li>
       <NavLink
-        to="/ai"
+        to="/Crush-Confession-AI"
         className={({ isActive }) => 
           isActive ? "text-blue-600 font-bold" : "text-gray-600"
         }
