@@ -2,16 +2,23 @@ import { useState } from "react";
 import { BsSendArrowUpFill } from "react-icons/bs";
 
 const CrushConfessionAI = () => {
-    const [response, setResponse] = useState("loremdfusd"); // Ho
-    const [input, setInput] = useState(""); 
-    const [submittedInput, setSubmittedInput] = useState(""); 
+    const [response, setResponse] = useState(""); // Holds the AI response
+    const [input, setInput] = useState(""); // Holds user input
+    const [submittedInput, setSubmittedInput] = useState(""); // Holds the submitted user input
+    const [isTyping, setIsTyping] = useState(false); // State to control typing animation
 
-    
+    // Mock function to handle confession submission
     const handleConfession = () => {
-        
+        // Update submitted input
         setSubmittedInput(input);
-        setResponse(`AI Response: We think "${input}" is quite adorable!`);
-        setInput("");
+        setInput(""); // Clear input after submission
+        setIsTyping(true); // Start typing animation
+
+        // Simulate AI typing response
+        setTimeout(() => {
+            setResponse(`AI Response: We think "${submittedInput}" is quite adorable!`);
+            setIsTyping(false); // End typing animation
+        }, 2000); // Adjust typing speed here (2000ms = 2 seconds)
     };
 
     return (
@@ -26,26 +33,29 @@ const CrushConfessionAI = () => {
                 {submittedInput && (
                     <div className="p-4 bg-gray-100 border-r-4 border-blue-500 rounded-md">
                         <div className="flex gap-2 items-center flex-row-reverse">
-                        <img src="https://xoryogroup.com/wp-content/uploads/2023/03/REX_Give_me_a_profile_pic_of_a_black_AI_Robot_avatar_thats_cut__3e773ce3-b62d-4425-b7ce-1c40b2bc25e7.png" className="avatar w-9 rounded-full" alt="" />
-
-                        <p className="text-gray-800">{submittedInput}</p>
+                            <img src="https://xoryogroup.com/wp-content/uploads/2023/03/REX_Give_me_a_profile_pic_of_a_black_AI_Robot_avatar_thats_cut__3e773ce3-b62d-4425-b7ce-1c40b2bc25e7.png" className="avatar w-9 rounded-full" alt="" />
+                            <p className="text-gray-800">{submittedInput}</p>
                         </div>
-                         
                     </div>
                 )}
 
                 {/* AI Response Display */}
-                {response && (
+                {isTyping ? (
+                    <div className="mt-2 p-4 bg-gray-100 border-l-4 border-green-500 rounded-md flex items-center">
+                        <img src="https://xoryogroup.com/wp-content/uploads/2023/03/REX_Give_me_a_profile_pic_of_a_black_AI_Robot_avatar_thats_cut__3e773ce3-b62d-4425-b7ce-1c40b2bc25e7.png" className="avatar w-9 rounded-full" alt="" />
+                        <p className="text-gray-800 animate-pulse">Typing...</p>
+                    </div>
+                ) : response && (
                     <div className="mt-2 p-4 bg-gray-100 border-l-4 border-green-500 rounded-md">
                         <div className="flex gap-4 items-center">
-                         <img src="https://xoryogroup.com/wp-content/uploads/2023/03/REX_Give_me_a_profile_pic_of_a_black_AI_Robot_avatar_thats_cut__3e773ce3-b62d-4425-b7ce-1c40b2bc25e7.png" className="avatar w-9 rounded-full" alt="" />
-                        <p className="text-gray-800">{response}</p>
+                            <img src="https://xoryogroup.com/wp-content/uploads/2023/03/REX_Give_me_a_profile_pic_of_a_black_AI_Robot_avatar_thats_cut__3e773ce3-b62d-4425-b7ce-1c40b2bc25e7.png" className="avatar w-9 rounded-full" alt="" />
+                            <p className="text-gray-800">{response}</p>
                         </div>
                     </div>
                 )}
 
                 {/* Confession Input Section */}
-                <div className="flex items-center"> 
+                <div className="flex items-center"> {/* Flex container for horizontal layout */}
                     <textarea
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
