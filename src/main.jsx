@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Root from './Layout/Root.jsx';
 import Home from './Pages/Home.jsx';
+import CrushConfessionAI from './Pages/CrushConfessionAI.jsx';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,9 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>
+      },{
+        path:'Crush-Confession-AI',
+        element: <CrushConfessionAI></CrushConfessionAI>
       }
     ]
   },
@@ -23,10 +27,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <div className='max-w-screen-xl mx-auto'>
     <RouterProvider router={router}>
       
     </RouterProvider>
-    </div>
   </StrictMode>,
 )
